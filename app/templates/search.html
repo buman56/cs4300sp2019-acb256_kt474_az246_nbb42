@@ -5,38 +5,52 @@
   </head>
   <body>
     <div class="topcorner">
-      <p>Project Name: {{ name }}</p>
-      <p>Student Name: {{ netid }}</p>
+      <!-- <p>Project Name: {{ name }}</p>
+      <p>Student Name: {{ netid }}</p> -->
     </div>
     <form class="form-inline global-search">
       <h1 style="font-size: 55px; font-family:Futura; color: #4285F4">
-        C
+        <!-- C
         <font color="#EA4335">S</font>
         <font color="#FBBC05">4</font>
         3
         <font color="#34A853">0</font>
-        <font color="#EA4335">0</font>
+        <font color="#EA4335">0</font> -->
+        Museum Recommender
       </h1>
 
       <br /><br />
 
       <div class="form-group">
         <input
-          id="input"
+          id="input form_styles"
           type="text"
           name="search"
           class="form-control"
-          placeholder="Your Input"
         />
       </div>
-      <button type="submit" class="btn btn-info">Go!</button>
+      <button type="submit" class="btn btn-info btn-lg">Search</button>
     </form>
     <form class="form-inline global-search">
       {% if data %}
-      <h1>{{ output_message }}</h1>
-      {% for d in data %}
+     
+      <h1 id = 'move'>{{ output_message }}</h1>
+      <br/>
+      <h2 id = 'idk'>Top Results</h2>
       <br />
-      <p>{{ d }}</p>
+      {% for t in test %}
+      <div class="card">
+        <div class="card-body" style="width: 65rem;" id="card">
+          <h3 class="card-title" id = 'adjust'>{{ t[0] }}</h3>
+          <br />
+          <p class="card-text" id = 'text'><h4>Description: &nbsp;</h4>{{ t[2] }}</p>
+        </div>
+      </div>
+      <br />
+     
+      <br />
+
+      <!-- <p>{{ d }}</p> -->
       {% endfor %} {% endif %}
     </form>
   </body>
