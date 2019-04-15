@@ -38,12 +38,12 @@
       <br/>
       <h2 id = 'idk'>Top Results</h2>
       <br />
-      {% for t in test %}
+      {% for t in results %}
       <div class="card">
         <div class="card-body" style="width: 65rem;" id="card">
           <h3 class="card-title" id = 'adjust'>{{ t[0] }}</h3>
           <br />
-          <p class="card-text" id = 'text'><h4>Description: &nbsp;</h4>{{ t[2] }}</p>
+          <p class="card-text"><h4>Description: &nbsp;</h4>{{ t[2] }}</p>
         </div>
       </div>
       <br />
