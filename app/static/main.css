@@ -11,7 +11,7 @@
   body {
     padding-top: 15%;
     padding-bottom: 15px;
-    background-color: #c4e0f9;
+    background-color: #fff;
   }
   .global-search {
     text-align: center;
@@ -22,7 +22,7 @@
   }
   input[type="text"] {
     font-size: 1.5em;
-    background-color: #c4e0f9;
+    background-color: #fff;
     border: none;
     box-shadow: none;
     border-radius: none;
@@ -64,12 +64,12 @@
   margin-bottom: 10px;
 }
 #card {
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   border-radius: 10px;
   padding: 20px;
   margin: 5 5 5 5;
   text-align: left;
-  background-color: #fff;
+  background-color: #c4e0f9;
   -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
