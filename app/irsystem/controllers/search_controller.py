@@ -13,7 +13,7 @@ def search():
 	if not query:
 		data = []
 		output_message = ''
-		results = get_suggestions(query)
+		results = []
 	else:
 		output_message = "You searched for: " + query
 		results = get_suggestions(query)
