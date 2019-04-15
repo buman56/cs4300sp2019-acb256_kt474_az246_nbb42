@@ -16,7 +16,8 @@ def search():
 		results = []
 	else:
 		output_message = "You searched for: " + query
-		results = get_suggestions(query)
+		# results = get_suggestions(query)
+		results = []
 		# top_result = " " + str(get_suggestions(query)[0][0]) 
 		# description = " " + str(get_suggestions(query)[0][2]) 
 		# other_results = " " + str(get_suggestions(query)[1][0]) 
