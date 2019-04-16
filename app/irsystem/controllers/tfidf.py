@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import math
 from sklearn.metrics.pairwise import cosine_similarity
 
-def build_vectorizer(max_features, stop_words, max_df=0.8, min_df=10, norm='l2'):
+def build_vectorizer(max_features, stop_words, max_df=0.8, min_df=1, norm='l2'):
 	return TfidfVectorizer(stop_words=stop_words,max_df=max_df, min_df=min_df, max_features=max_features, norm=norm)
 
 def get_sim(query, doc_index, doc_by_vocab):
