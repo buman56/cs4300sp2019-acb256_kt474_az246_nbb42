@@ -18,15 +18,23 @@ def search():
     else:
         output_message = "You searched for: " + query
         results = get_suggestions(query)
+<<<<<<< HEAD
+=======
+        #results = museum_match(query)
+>>>>>>> ff62f502bbaa753bfa0fb499fbfdb274bb57a464
 
         # top_result = " " + str(get_suggestions(query)[0][0])
         # description = " " + str(get_suggestions(query)[0][2])
         # other_results = " " + str(get_suggestions(query)[1][0])
         data = range(5)
 
+<<<<<<< HEAD
     return render_template('search.html',
                            name=project_name,
                            netid=net_id,
                            output_message=output_message,
                            data=data,
                            results=results)
+=======
+    return render_template('search.html', name=project_name, netid=net_id, output_message=output_message, data=data, results=results)
+>>>>>>> ff62f502bbaa753bfa0fb499fbfdb274bb57a464
