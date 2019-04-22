@@ -65,14 +65,14 @@
 }
 #card {
   /* border: 1px solid #fff; */
-  border-radius: 10px;
+  /* border-radius: 10px;
   padding: 20px;
   margin: 5 5 5 5;
-  text-align: left;
-  background-color: #c4e0f9;
-  -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  text-align: left; */
+  /* background-color: #c4e0f9; */
+  /* -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75); */
 }
 /* #subtitle {
   font-size: 1.2em;
@@ -82,4 +82,7 @@
 }
 #text {
   font-size: 15px;
+}
+.blank {
+  display: none;
 }
