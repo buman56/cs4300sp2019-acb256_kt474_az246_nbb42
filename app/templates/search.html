@@ -2,12 +2,6 @@
   <head>
     <link rel="stylesheet" href="/static/bootstrap.min.css" />
     <link rel="stylesheet" href="/static/main.css" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    /> -->
   </head>
   <body>
     <div class="topcorner">
@@ -37,54 +31,58 @@
       </div>
       <button type="submit" class="btn btn-info btn-lg">Search</button>
     </form>
-    
     <form class="form-inline global-search">
-      
-{% if data %}
-      <h1 id="move">{{ output_message }}</h1>
-      <br />
-      <h2 id="idk">Top Results</h2>
+      {% if data %}
+     
+      <h1 id = 'move'>{{ output_message }}</h1>
+      <br/>
+      <h2 id = 'idk'>Top Results</h2>
       <br />
       {% for t in results %}
       <div class="card">
         <div class="card-body" style="width: 65rem;" id="card">
           <h3 class="card-title" id = 'adjust'>{{ t[0] }}</h3>
-          <div id = 'img'></div>
-        
-          <!-- <div class = 'blank'>
-              
-          <script>
-            var test = 'https://api.flickr.com/services/feeds/photos_public.gne?format=json&tags=';
-            var image = test + 'space';
-          
-            var key = 'AIzaSyDqdp3eyWNZrN8qMIlA9UYo7eOzuonW8Vo';
-              var link = "https://source.unsplash.com/1600x900/?";
-              var museum_name = document.getElementById('adjust').textContent;
-              var name_split = museum_name.split(' ');
-              var keyword_1 = name_split[0];
-              var keyword_2 = name_split[1];
-              var keyword_3 = name_split[2];
-      
-              var final_link = link + keyword_1 + ',' +keyword_2 + ',museum';
-              //console.log(final_link);
-              document.getElementById("img").innerHTML = "<img src=" + final_link+ ", width = '400'>";
-
-            </script>
-            </div> -->
-           
           <br />
           <p class="card-text"><h4>Description: &nbsp;</h4>{{ t[2] }}</p>
+          <br/>
+          <p id = 'more' class = 'blank'>{{more_info[0][0]}}</p>
+          <p id = 'more2' class = 'blank'>{{more_info[1][0]}}</p>
+          <p id = 'more3' class = 'blank'>{{more_info[2][0]}}</p>
+          <div class="blank">
+            
+          <script>
+            function showMore(){
+              var name = document.getElementById('more').innerHTML
+              document.getElementById('similar').innerHTML = name
+
+              var name2 = document.getElementById('more2').innerHTML
+              document.getElementById('similar2').innerHTML = name2
+
+              var name3 = document.getElementById('more3').innerHTML
+              document.getElementById('similar3').innerHTML = name3
+            }
+          </script>
+          </div>
+          
+          <button type="button" class="btn btn-primary spacing" onclick = 'showMore()'>Similar Museums</button>
+          <br />
+          <h3 id="similar"></h3>
+          <br/>
+          <h3 id="similar2"></h3>
+          <br/>
+          <h3 id="similar3"></h3>
         </div>
+        
       </div>
       
       <br />
-
+     
       <br />
 
       <!-- <p>{{ d }}</p> -->
-      {% endfor %} {% endif %}
+      {% endfor %} 
       
+      {% endif %}
     </form>
-    
   </body>
 </html>
