@@ -13,8 +13,8 @@ def search():
     version = request.args.get('version')
     if version == "old":
         data = range(5)
-        #more_info = [['', ''], ['', ''], ['', '']]
-        more_info = ''
+        more_info = [['', ''], ['', ''], ['', '']]
+        #more_info = ''
         output_message = "You searched for: " + query
         # results = get_suggestions(query)
         results = OLD_get_suggestions(query)
