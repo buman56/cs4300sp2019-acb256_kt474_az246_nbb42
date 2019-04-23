@@ -84,6 +84,36 @@ def museum_match(q):
     return closest_projects(docs_compressed, m_name_to_index[q], 5)
 
 
+def OLD_get_suggestions(q):
+    df = pd.read_csv('tripadvisor_merged.csv')
+    desc_data = []
+    #
+    for d in df['Description']:
+        if(isinstance(d, float)):
+            if(math.isnan(d)):
+                desc_data.append('')
+        else:
+            desc_data.append(d)
+
+    movie_index_to_name = {index: movie_name for index,
+                           movie_name in enumerate(df['MuseumName'])}
+    movie_index_to_description = {
+        index: desc for index, desc in enumerate(desc_data)}
+
+    vectorizer = build_vectorizer(5000, "english")
+    doc_by_vocab = vectorizer.fit_transform(desc_data)
+    query = vectorizer.transform([q])
+    sim = get_sim(query, 5, doc_by_vocab)[0]
+    top_5_idx = np.argsort(sim)[-5:]
+    top_5 = []
+
+    for i in reversed(top_5_idx):
+        top_5.append(
+            (movie_index_to_name[i], sim[i], movie_index_to_description[i]))
+
+    return top_5
+
+
 def main():
     print(get_suggestions('war memorial service'))
     print(museum_match("he"))
