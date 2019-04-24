@@ -6,6 +6,8 @@
 @media (min-width: 400px) {
   .global-search {
     padding: 20px 0;
+  }
+  .center {
     text-align: center;
   }
   body {
@@ -14,7 +16,6 @@
     background-color: #fff;
   }
   .global-search {
-    text-align: center;
     padding: 10px;
   }
   /* .global-search .form-control {

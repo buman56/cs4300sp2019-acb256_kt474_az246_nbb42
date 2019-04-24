@@ -7,13 +7,17 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="topcorner">
       <!-- <p>Project Name: {{ name }}</p>
       <p>Student Name: {{ netid }}</p> -->
     </div>
-    <form class="form-inline global-search">
+    <form class="form-inline global-search center-align">
       <h1 style="font-size: 55px; font-family:Futura; color: #4285F4">
         <!-- C
         <font color="#EA4335">S</font>
@@ -39,9 +43,9 @@
     <form class="form-inline global-search">
       {% if data %}
 
-      <h4 id="move">{{ output_message }}</h4>
+      <h4 id="move" class="center-align">{{ output_message }}</h4>
 
-      <h4 id="idk">Top Results</h4>
+      <h4 id="idk" class="center-align">Top Results</h4>
 
       <div class="container">
         {% for t in results %}
@@ -57,20 +61,26 @@
                   {{ t[2] }}
                 </p>
               </div>
-              <div class="card-action activator">
+              <div class="card-action activator center-align">
                 <a class="activator" id="link">Similar Museums</a>
               </div>
               <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4"
+                <span class="card-title grey-text text-darken-4 center-align"
                   ><h5>{{ t[0] }}</h5>
-                  <h5>Similar Museums</h5></span
-                >
+                </span>
                 <br />
-                {% for x in t[4] %}
-                <ul>
-                  <li>{{ x }}</li>
+                <ul class="collection with-header">
+                  <li class="collection-header"><h4>Similar Museums</h4></li>
+                  {% for x in t[4] %}
+
+                  <li class="collection-item">{{ x }}</li>
+
+                  {% endfor %}
                 </ul>
-                {% endfor %}
+                <br />
+                <span class="card-title grey-text text-darken-4 center-align"
+                  ><i class="material-icons center">close</i></span
+                >
               </div>
             </div>
           </div>
