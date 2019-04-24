@@ -34,6 +34,9 @@ for m in review_museum:
 
 m_index_to_description = {index: desc for index, desc in enumerate(pure_desc)}
 
+# image stuff
+link = "https://source.unsplash.com/1600x900/?"
+
 
 def build_vectorizer(max_features, stop_words, max_df=0.8, min_df=1,
                      norm='l2'):
@@ -58,8 +61,10 @@ def get_suggestions(q):
 
     for i in reversed(top_5_idx):
         if (sim[i] > 0 and m_index_to_description[i] != ''):
+            keyword = m_index_to_name[i].split()
             top_5.append(
-                (m_index_to_name[i], sim[i], m_index_to_description[i]))
+                (m_index_to_name[i], sim[i], m_index_to_description[i],
+                 link + 'museum,' + keyword[0]))
 
     return top_5
 
@@ -89,16 +94,20 @@ def OLD_get_suggestions(q):
     desc_data = []
     #
     for d in df['Description']:
-        if(isinstance(d, float)):
-            if(math.isnan(d)):
+        if (isinstance(d, float)):
+            if (math.isnan(d)):
                 desc_data.append('')
         else:
             desc_data.append(d)
 
-    movie_index_to_name = {index: movie_name for index,
-                           movie_name in enumerate(df['MuseumName'])}
+    movie_index_to_name = {
+        index: movie_name
+        for index, movie_name in enumerate(df['MuseumName'])
+    }
     movie_index_to_description = {
-        index: desc for index, desc in enumerate(desc_data)}
+        index: desc
+        for index, desc in enumerate(desc_data)
+    }
 
     vectorizer = build_vectorizer(5000, "english")
     doc_by_vocab = vectorizer.fit_transform(desc_data)

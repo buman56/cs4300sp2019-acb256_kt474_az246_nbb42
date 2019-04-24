@@ -1,7 +1,11 @@
 <html>
   <head>
-    <link rel="stylesheet" href="/static/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="/static/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="/static/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
   </head>
   <body>
     <div class="topcorner">
@@ -21,34 +25,56 @@
 
       <br /><br />
 
-      <div class="form-group">
+      <div class="form-group col s12">
         <input
           id="input form_styles"
           type="text"
           name="search"
           class="form-control"
         />
+        <button type="submit" class="btn btn-info btn-lg blue">Search</button>
       </div>
-      <button type="submit" class="btn btn-info btn-lg">Search</button>
     </form>
     <form class="form-inline global-search">
       {% if data %}
-     
-      <h1 id = 'move'>{{ output_message }}</h1>
-      <br/>
-      <h2 id = 'idk'>Top Results</h2>
+
+      <h4 id="move">{{ output_message }}</h4>
       <br />
-      {% for t in results %}
-      <div class="card">
+      <h4 id="idk">Top Results</h4>
+      <br />
+      <div class="container">
+        {% for t in results %}
+        <div class="row">
+          <div class="col s8 push-s2">
+            <div class="card">
+              <div class="card-image">
+                <img src="{{ t[3] }}" />
+                <span class="card-title">{{ t[0] }}</span>
+              </div>
+              <div class="card-content">
+                <p>
+                  {{ t[2] }}
+                </p>
+              </div>
+              <div class="card-action">
+                <a href="#">Similar Museums</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="card">
         <div class="card-body" style="width: 65rem;" id="card">
           <h3 class="card-title" id = 'adjust'>{{ t[0] }}</h3>
+          <br/>
+          <img src = '{{t[3]}}' width = '400'>
           <br />
           <p class="card-text"><h4>Description: &nbsp;</h4>{{ t[2] }}</p>
-          <br/>
-          <p id = 'more' class = 'blank'>{{more_info[0][0]}}</p>
+          <br/> -->
+        <!-- <p id = 'more' class = 'blank'>{{more_info[0][0]}}</p>
           <p id = 'more2' class = 'blank'>{{more_info[1][0]}}</p>
-          <p id = 'more3' class = 'blank'>{{more_info[2][0]}}</p>
-          <div class="blank">
+          <p id = 'more3' class = 'blank'>{{more_info[2][0]}}</p> -->
+        <!-- <div class="blank">
             
           <script>
             function showMore(){
@@ -62,27 +88,22 @@
               document.getElementById('similar3').innerHTML = name3
             }
           </script>
-          </div>
-          
-          <button type="button" class="btn btn-primary spacing" onclick = 'showMore()'>Similar Museums</button>
+          </div> -->
+
+        <!-- <button type="button" class="btn btn-primary spacing" onclick = 'showMore()'>Similar Museums</button>
           <br />
           <h3 id="similar"></h3>
           <br/>
           <h3 id="similar2"></h3>
           <br/>
-          <h3 id="similar3"></h3>
-        </div>
-        
-      </div>
-      
-      <br />
-     
-      <br />
+          <h3 id="similar3"></h3> -->
+        <!-- </div> -->
 
-      <!-- <p>{{ d }}</p> -->
-      {% endfor %} 
-      
-      {% endif %}
+        <!-- </div> -->
+
+        <!-- <p>{{ d }}</p> -->
+        {% endfor %} {% endif %}
+      </div>
     </form>
   </body>
 </html>
