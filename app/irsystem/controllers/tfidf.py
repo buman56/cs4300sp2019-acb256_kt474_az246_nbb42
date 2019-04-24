@@ -51,29 +51,13 @@ def get_sim(query, doc_index, doc_by_vocab):
     return cosine_similarity(query, doc_by_vocab)
 
 
-def get_suggestions(q):
-    vectorizer = build_vectorizer(5000, "english")
-    doc_by_vocab = vectorizer.fit_transform(desc_data)
-    query = vectorizer.transform([q])
-    sim = get_sim(query, 5, doc_by_vocab)[0]
-    top_5_idx = np.argsort(sim)[-5:]
-    top_5 = []
-
-    for i in reversed(top_5_idx):
-        if (sim[i] > 0 and m_index_to_description[i] != ''):
-            keyword = m_index_to_name[i].split()
-            top_5.append(
-                (m_index_to_name[i], sim[i], m_index_to_description[i],
-                 link + 'museum,' + keyword[0]))
-
-    return top_5
-
-
 def closest_projects(docs_compressed, project_index_in, k=5):
     sims = docs_compressed.dot(docs_compressed[project_index_in, :])
     asort = np.argsort(-sims)[:k + 1]
-    return [(m_index_to_name[i], sims[i] / sims[asort[0]],
-             m_index_to_description[i]) for i in asort[1:]]
+    # return [(m_index_to_name[i], sims[i] / sims[asort[0]],
+    #          m_index_to_description[i]) for i in asort[1:]]
+    #changed so it only returns the title for now
+    return [(m_index_to_name[i]) for i in asort[1:]]
 
 
 def museum_match(q):
@@ -87,6 +71,25 @@ def museum_match(q):
     docs_compressed = normalize(docs_compressed, axis=1)
 
     return closest_projects(docs_compressed, m_name_to_index[q], 5)
+
+
+def get_suggestions(q):
+    vectorizer = build_vectorizer(5000, "english")
+    doc_by_vocab = vectorizer.fit_transform(desc_data)
+    query = vectorizer.transform([q])
+    sim = get_sim(query, 5, doc_by_vocab)[0]
+    top_5_idx = np.argsort(sim)[-5:]
+    top_5 = []
+
+    for i in reversed(top_5_idx):
+        if (sim[i] > 0 and m_index_to_description[i] != ''):
+            keyword = m_index_to_name[i].split()
+            top_5.append(
+                (m_index_to_name[i], sim[i],
+                 m_index_to_description[i], link + 'museum,' + keyword[0],
+                 museum_match(m_index_to_name[i])))
+
+    return top_5
 
 
 def OLD_get_suggestions(q):

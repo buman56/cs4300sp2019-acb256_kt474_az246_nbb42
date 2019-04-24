@@ -39,6 +39,9 @@
 .step-links a {
   color: #4285f4;
 }
+#link {
+  cursor: pointer;
+}
 .form-control:focus {
   border-color: inherit;
   -webkit-box-shadow: none;

@@ -6,6 +6,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body>
     <div class="topcorner">
@@ -39,9 +40,9 @@
       {% if data %}
 
       <h4 id="move">{{ output_message }}</h4>
-      <br />
+
       <h4 id="idk">Top Results</h4>
-      <br />
+
       <div class="container">
         {% for t in results %}
         <div class="row">
@@ -56,8 +57,20 @@
                   {{ t[2] }}
                 </p>
               </div>
-              <div class="card-action">
-                <a href="#">Similar Museums</a>
+              <div class="card-action activator">
+                <a class="activator" id="link">Similar Museums</a>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4"
+                  ><h5>{{ t[0] }}</h5>
+                  <h5>Similar Museums</h5></span
+                >
+                <br />
+                {% for x in t[4] %}
+                <ul>
+                  <li>{{ x }}</li>
+                </ul>
+                {% endfor %}
               </div>
             </div>
           </div>
