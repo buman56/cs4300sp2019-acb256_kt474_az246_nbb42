@@ -2,6 +2,7 @@
   <head>
     <!-- <link rel="stylesheet" href="/static/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="/static/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -12,6 +13,7 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
     <div class="topcorner">
       <!-- <p>Project Name: {{ name }}</p>
@@ -32,10 +34,10 @@
 
       <div class="form-group col s12">
         <input
-          id="input form_styles"
+          id="autocomplete-input"
           type="text"
           name="search"
-          class="form-control"
+          class="autocomplete"
         />
         <button type="submit" class="btn btn-info btn-lg blue">Search</button>
       </div>
@@ -49,6 +51,32 @@
 
       <div class="container">
         {% for t in results %}
+
+        <div class="blank">
+          <p id="lat">{{ t[6] }}</p>
+          <p id="lng">{{ t[7] }}</p>
+          <script>
+            // console.log("{{t[6]|safe}}");
+
+            var lat = document.getElementById("lat").innerHTML;
+            var lng = document.getElementById("lng").innerHTML;
+
+            function initMap() {
+              // var lat = "{{t[6]}}";
+              // var lng = "{{t[7]}}";
+              var location = { lat: Number(lat), lng: Number(lng) };
+              var map = new google.maps.Map(document.getElementById("map"), {
+                center: location,
+                zoom: 8
+              });
+              var marker = new google.maps.Marker({
+                position: location,
+                map: map
+              });
+            }
+          </script>
+        </div>
+        <!-- <span onclick="initMap()">{{ t[6] }}</span> -->
         <div class="row">
           <div class="col s8 push-s2">
             <div class="card">
@@ -62,7 +90,7 @@
                 </p>
               </div>
               <div class="card-action activator center-align">
-                <a class="activator" id="link">Similar Museums</a>
+                <a class="activator" id="link">More Info</a>
               </div>
               <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4 center-align"
@@ -72,11 +100,13 @@
                 <ul class="collection with-header">
                   <li class="collection-header"><h5>Similar Museums</h5></li>
                   {% for x in t[4] %}
-
                   <li class="collection-item">{{ x }}</li>
-
                   {% endfor %}
                 </ul>
+                <br />
+                <h6>Address: {{ t[5] }}</h6>
+                <br />
+                <div id="map"></div>
                 <br />
                 <span class="card-title grey-text text-darken-4 center-align"
                   ><i class="material-icons center">close</i></span
@@ -85,48 +115,14 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="card">
-        <div class="card-body" style="width: 65rem;" id="card">
-          <h3 class="card-title" id = 'adjust'>{{ t[0] }}</h3>
-          <br/>
-          <img src = '{{t[3]}}' width = '400'>
-          <br />
-          <p class="card-text"><h4>Description: &nbsp;</h4>{{ t[2] }}</p>
-          <br/> -->
-        <!-- <p id = 'more' class = 'blank'>{{more_info[0][0]}}</p>
-          <p id = 'more2' class = 'blank'>{{more_info[1][0]}}</p>
-          <p id = 'more3' class = 'blank'>{{more_info[2][0]}}</p> -->
-        <!-- <div class="blank">
-            
-          <script>
-            function showMore(){
-              var name = document.getElementById('more').innerHTML
-              document.getElementById('similar').innerHTML = name
-
-              var name2 = document.getElementById('more2').innerHTML
-              document.getElementById('similar2').innerHTML = name2
-
-              var name3 = document.getElementById('more3').innerHTML
-              document.getElementById('similar3').innerHTML = name3
-            }
-          </script>
-          </div> -->
-
-        <!-- <button type="button" class="btn btn-primary spacing" onclick = 'showMore()'>Similar Museums</button>
-          <br />
-          <h3 id="similar"></h3>
-          <br/>
-          <h3 id="similar2"></h3>
-          <br/>
-          <h3 id="similar3"></h3> -->
-        <!-- </div> -->
-
-        <!-- </div> -->
-
-        <!-- <p>{{ d }}</p> -->
         {% endfor %} {% endif %}
       </div>
     </form>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-iVMtBG7yZrETOvn0cowcSB_4Wsky_b4&callback=initMap"
+      async
+      defer
+    ></script>
   </body>
 </html>

@@ -25,6 +25,17 @@ m_index_to_name = {
     index: m_name
     for index, m_name in enumerate(df['MuseumName'])
 }
+
+m_index_to_address = {
+    index: m_name
+    for index, m_name in enumerate(df['Address'])
+}
+
+m_index_to_lat = {index: m_name for index, m_name in enumerate(df['Latitude'])}
+m_index_to_lng = {
+    index: m_name
+    for index, m_name in enumerate(df['Langtitude'])
+}
 m_name_to_index = dict((v, k) for k, v in m_index_to_name.items())
 
 for m in review_museum:
@@ -87,7 +98,8 @@ def get_suggestions(q):
             top_5.append(
                 (m_index_to_name[i], sim[i],
                  m_index_to_description[i], link + 'museum,' + keyword[0],
-                 museum_match(m_index_to_name[i])))
+                 museum_match(m_index_to_name[i]), m_index_to_address[i],
+                 m_index_to_lat[i], m_index_to_lng[i]))
 
     return top_5
 
