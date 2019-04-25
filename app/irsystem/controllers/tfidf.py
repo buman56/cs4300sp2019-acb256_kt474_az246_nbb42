@@ -47,6 +47,9 @@ m_index_to_description = {index: desc for index, desc in enumerate(pure_desc)}
 
 # image stuff
 link = "https://source.unsplash.com/1600x900/?"
+map_link = 'https://maps.googleapis.com/maps/api/staticmap?center='
+api_key = 'AIzaSyA-iVMtBG7yZrETOvn0cowcSB_4Wsky_b4'
+other_link = '&zoom=12&size=600x400'
 
 
 def build_vectorizer(max_features, stop_words, max_df=0.8, min_df=1,
@@ -96,10 +99,12 @@ def get_suggestions(q):
         if (sim[i] > 0 and m_index_to_description[i] != ''):
             keyword = m_index_to_name[i].split()
             top_5.append(
-                (m_index_to_name[i], sim[i],
-                 m_index_to_description[i], link + 'museum,' + keyword[0],
-                 museum_match(m_index_to_name[i]), m_index_to_address[i],
-                 m_index_to_lat[i], m_index_to_lng[i]))
+                (m_index_to_name[i], sim[i], m_index_to_description[i],
+                 link + 'museum,' + keyword[0], museum_match(
+                     m_index_to_name[i]), m_index_to_address[i], map_link +
+                 str(m_index_to_lat[i]) + ',' + str(m_index_to_lng[i]) +
+                 other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
+                 str(m_index_to_lng[i]) + '&key=' + api_key))
 
     return top_5
 
