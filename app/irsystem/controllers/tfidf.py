@@ -41,7 +41,16 @@ m_name_to_index = dict((v, k) for k, v in m_index_to_name.items())
 for m in review_museum:
     ind = m_name_to_index[m]
     for review in review_js[m]:
-        desc_data[ind] = desc_data[ind] + review
+        desc_data[ind] = desc_data[ind] + " " +review
+
+
+for tag in list(df.columns)[17:200]:
+    for m in review_museum:
+        ind = m_name_to_index[m]
+        if df[tag][ind] == 1:
+            desc_data[ind] = desc_data[ind] + " " + tag.lower()
+    
+
 
 m_index_to_description = {index: desc for index, desc in enumerate(pure_desc)}
 
