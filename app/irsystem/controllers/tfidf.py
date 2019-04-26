@@ -82,8 +82,12 @@ def closest_projects(docs_compressed, project_index_in, k=5):
     # return [(m_index_to_name[i], sims[i] / sims[asort[0]],
     #          m_index_to_description[i]) for i in asort[1:]]
     #changed so it only returns the title for now
-    return [(m_index_to_name[i]) for i in asort[1:]]
-
+    closest_projects = []
+    for i in asort[1:]:
+        project = [m_index_to_name[i],
+            "../?search=" + m_index_to_name[i].lower().replace(" ", "+")]
+        closest_projects.append(project)
+    return closest_projects
 
 def museum_match(q):
 
