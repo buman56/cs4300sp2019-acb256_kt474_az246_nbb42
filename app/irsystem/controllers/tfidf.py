@@ -48,7 +48,7 @@ m_index_to_description = {index: desc for index, desc in enumerate(pure_desc)}
 # image stuff
 link = "https://source.unsplash.com/1600x900/?"
 map_link = 'https://maps.googleapis.com/maps/api/staticmap?center='
-api_key = 'AIzaSyA-iVMtBG7yZrETOvn0cowcSB_4Wsky_b4'
+api_key = 'AIzaSyDT6KA7EEHqCzX8UZgEEXIJ2Uo3O-EmWao'
 other_link = '&zoom=12&size=600x400'
 
 
