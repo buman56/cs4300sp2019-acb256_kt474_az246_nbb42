@@ -118,3 +118,7 @@ input[type="text"] {
   height: 45px !important;
   outline: none !important;
 }
+
+.collection-header {
+  font-weight: bold;
+}

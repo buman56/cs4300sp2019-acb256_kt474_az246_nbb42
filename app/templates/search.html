@@ -16,8 +16,6 @@
 
   <body>
     <div class="topcorner">
-      <!-- <p>Project Name: {{ name }}</p>
-      <p>Student Name: {{ netid }}</p> -->
     </div>
     <form class="form-inline global-search center-align">
       <h1 style="font-size: 55px; font-family:Futura; color: #4285F4">
@@ -116,7 +114,7 @@
                       <li class="collection-item">"{{ y }}"</li>
                   {% endfor %}
                 {% else %}
-                  <h6>No reviews available for this museum. </h6>
+                  <li class="collection-header"><h6>No reviews avaiable for this museum.</h6></li>
                 {% endif %}
                 </ul>
                 <h6>Address: {{ t[5] }}</h6>
