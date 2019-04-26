@@ -12,22 +12,25 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <div class="topcorner">
-      <!-- <p>Project Name: {{ name }}</p>
-      <p>Student Name: {{ netid }}</p> -->
-    </div>
+    <div class="topcorner"></div>
     <form class="form-inline global-search center-align">
-      <h1 style="font-size: 55px; color: #4285F4">
+      <h1
+        style="font-size: 55px; font-family: 'Nunito', sans-serif; color: #4285F4"
+      >
         <!-- C
         <font color="#EA4335">S</font>
         <font color="#FBBC05">4</font>
         3
         <font color="#34A853">0</font>
         <font color="#EA4335">0</font> -->
-        Museum Recommender
+        <a href="/">Museum Recommender</a>
       </h1>
 
       <br /><br />
@@ -90,7 +93,9 @@
                 <ul class="collection with-header">
                   <li class="collection-header"><h6>Similar Museums</h6></li>
                   {% for x in t[4] %}
-                  <li class="collection-item">{{ x }}</li>
+                  <li class="collection-item">
+                    <a href="{{ x[1] }}">{{ x[0] }}</a>
+                  </li>
                   {% endfor %}
                 </ul>
                 <br />
