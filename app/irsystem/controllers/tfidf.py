@@ -100,11 +100,12 @@ def get_suggestions(q):
             keyword = m_index_to_name[i].split()
             top_5.append(
                 (m_index_to_name[i], sim[i], m_index_to_description[i],
-                 link + 'museum,' + keyword[0], museum_match(
-                     m_index_to_name[i]), m_index_to_address[i], map_link +
+                 link + 'museum,' + keyword[0] + keyword[1],
+                 museum_match(m_index_to_name[i]), m_index_to_address[i],
+                 map_link + str(m_index_to_lat[i]) + ',' +
+                 str(m_index_to_lng[i]) + other_link + '&markers=|' +
                  str(m_index_to_lat[i]) + ',' + str(m_index_to_lng[i]) +
-                 other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
-                 str(m_index_to_lng[i]) + '&key=' + api_key))
+                 '&key=' + api_key))
 
     return top_5
 
