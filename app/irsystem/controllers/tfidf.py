@@ -51,7 +51,7 @@ for tag in list(df.columns)[17:200]:
         ind = m_name_to_index[m]
         if df[tag][ind] == 1:
             desc_data[ind] = desc_data[ind] + " " + tag.lower()
-    
+
 
 
 m_index_to_description = {index: desc for index, desc in enumerate(pure_desc)}
@@ -127,12 +127,9 @@ def get_suggestions(q):
                  map_link + str(m_index_to_lat[i]) + ',' +
                  str(m_index_to_lng[i]) + other_link + '&markers=|' +
                  str(m_index_to_lat[i]) + ',' + str(m_index_to_lng[i]) +
-<<<<<<< HEAD
                  '&key=' + api_key))
-=======
                  other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
                  str(m_index_to_lng[i]) + '&key=' + api_key, reviews))
->>>>>>> 3c876a87b7c937a5a01a9b05972121c110be6236
 
     return top_5
 
