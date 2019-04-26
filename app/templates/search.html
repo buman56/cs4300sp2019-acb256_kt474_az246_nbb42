@@ -51,43 +51,18 @@
     <form class="form-inline global-search">
       {% if data %}
 
-      <h4 id="move" class="center-align">{{ output_message }}</h4>
+      <h4 id="move" class="center-align">
+        You searched for {{ output_message }}
+      </h4>
 
       {% if results|length > 0 %}
-        <h4 id="idk" class="center-align"> Top Results </h4>
+      <h4 id="idk" class="center-align">Top Results</h4>
       {% else %}
-        <h4 id="idk" class="center-align"> No Results </h4>
+      <h4 id="idk" class="center-align">No Results</h4>
       {% endif %}
-
 
       <div class="container">
         {% for t in results %}
-
-        <!-- <div class="blank">
-          <p id="lat">{{ t[6] }}</p>
-          <p id="lng">{{ t[7] }}</p>
-          <script>
-            // console.log("{{t[6]|safe}}");
-
-            var lat = document.getElementById("lat").innerHTML;
-            var lng = document.getElementById("lng").innerHTML;
-
-            function initMap() {
-              // var lat = "{{t[6]}}";
-              // var lng = "{{t[7]}}";
-              var location = { lat: Number(lat), lng: Number(lng) };
-              var map = new google.maps.Map(document.getElementById("map"), {
-                center: location,
-                zoom: 8
-              });
-              var marker = new google.maps.Marker({
-                position: location,
-                map: map
-              });
-            }
-          </script>
-        </div> -->
-        <!-- <span onclick="initMap()">{{ t[6] }}</span> -->
         <div class="row">
           <div class="col s8 push-s2">
             <div class="card">
@@ -96,9 +71,13 @@
                 <span class="card-title">{{ t[0] }}</span>
               </div>
               <div class="card-content">
-                <p>
-                  {{ t[2] }}
-                </p>
+                <!-- <p>{{ output_message.split() | length }}</p> -->
+                {% for n in output_message.split() %} {% for w in t[2].split()
+                %} {% if (n.lower() == w.lower()) or (n.lower() in w.lower())%}
+                <p class="inline" id="highlight">{{ w }}</p>
+                {%else%}
+                {{ w }}
+                {% endif %} {% endfor %} {% endfor %}
               </div>
               <div class="card-action activator center-align">
                 <a class="activator" id="link">More Info</a>
@@ -129,11 +108,5 @@
         {% endfor %} {% endif %}
       </div>
     </form>
-
-    <!-- <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-iVMtBG7yZrETOvn0cowcSB_4Wsky_b4&callback=initMap"
-      async
-      defer
-    ></script> -->
   </body>
 </html>

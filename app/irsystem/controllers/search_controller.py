@@ -24,7 +24,7 @@ def search():
             more_info = ''
             results = []
         else:
-            output_message = "You searched for: " + query
+            output_message = query
 
             results = get_suggestions(query)
             try:

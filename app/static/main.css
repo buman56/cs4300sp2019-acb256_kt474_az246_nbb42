@@ -101,3 +101,11 @@ input[type="text"] {
   height: 45px !important;
   outline: none !important;
 }
+#highlight {
+  background-color: #90caf9;
+  font-weight: bold;
+  padding: 1px;
+}
+.inline {
+  display: inline;
+}
