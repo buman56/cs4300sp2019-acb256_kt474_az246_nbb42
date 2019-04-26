@@ -123,12 +123,8 @@ def get_suggestions(q):
                  map_link + str(m_index_to_lat[i]) + ',' +
                  str(m_index_to_lng[i]) + other_link + '&markers=|' +
                  str(m_index_to_lat[i]) + ',' + str(m_index_to_lng[i]) +
-<<<<<<< HEAD
-                 '&key=' + api_key))
-=======
                  other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
                  str(m_index_to_lng[i]) + '&key=' + api_key, reviews))
->>>>>>> 3c876a87b7c937a5a01a9b05972121c110be6236
 
     return top_5
 
