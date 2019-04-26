@@ -118,11 +118,6 @@ input[type="text"] {
   height: 45px !important;
   outline: none !important;
 }
-<<<<<<< HEAD
-
-.collection-header {
-  font-weight: bold;
-=======
 #highlight {
   background-color: #90caf9;
   font-weight: bold;
@@ -130,5 +125,4 @@ input[type="text"] {
 }
 .inline {
   display: inline;
->>>>>>> 0646c6f00f4671f9ec4f3438a30b8cd324f1209d
 }
