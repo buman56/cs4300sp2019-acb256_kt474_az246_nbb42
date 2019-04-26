@@ -38,6 +38,8 @@ m_index_to_lng = {
 }
 m_name_to_index = dict((v, k) for k, v in m_index_to_name.items())
 
+
+
 for m in review_museum:
     ind = m_name_to_index[m]
     for review in review_js[m]:
@@ -107,13 +109,20 @@ def get_suggestions(q):
     for i in reversed(top_5_idx):
         if (sim[i] > 0 and m_index_to_description[i] != ''):
             keyword = m_index_to_name[i].split()
+            if m_index_to_name[i] in review_museum:
+                if len(review_js[m_index_to_name[i]]) >= 3:
+                    reviews = review_js[m_index_to_name[i]][:3]
+                else:
+                    reviews = review_js[m_index_to_name[i]]
+            else:
+                reviews = []
             top_5.append(
                 (m_index_to_name[i], sim[i], m_index_to_description[i],
                  link + 'museum,' + keyword[0], museum_match(
                      m_index_to_name[i]), m_index_to_address[i], map_link +
                  str(m_index_to_lat[i]) + ',' + str(m_index_to_lng[i]) +
                  other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
-                 str(m_index_to_lng[i]) + '&key=' + api_key))
+                 str(m_index_to_lng[i]) + '&key=' + api_key, reviews))
 
     return top_5
 
