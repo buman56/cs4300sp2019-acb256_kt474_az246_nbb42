@@ -51,6 +51,7 @@
     <form class="form-inline global-search">
       {% if data %}
 
+<<<<<<< HEAD
       <h4 id="move" class="center-align">
         You searched for {{ output_message }}
       </h4>
@@ -59,6 +60,14 @@
       <h4 id="idk" class="center-align">Top Results</h4>
       {% else %}
       <h4 id="idk" class="center-align">No Results</h4>
+=======
+      <h4 id="move" class="center">{{ output_message }}</h4>
+
+      {% if results|length > 0 %}
+        <h4 id="idk" class="center"> Top Results </h4>
+      {% else %}
+        <h4 id="idk" class="center"> No Results </h4>
+>>>>>>> 3c876a87b7c937a5a01a9b05972121c110be6236
       {% endif %}
 
       <div class="container">
@@ -88,19 +97,28 @@
                 </span>
                 <br />
                 <ul class="collection with-header">
-                  <li class="collection-header"><h5>Similar Museums</h5></li>
+                  <li class="collection-header"><h6>Similar Museums</h6></li>
                   {% for x in t[4] %}
                   <li class="collection-item">{{ x }}</li>
                   {% endfor %}
                 </ul>
                 <br />
+                <ul class="collection with-header">
+                {% if t[7]|length > 0 %}
+                  <li class="collection-header"><h6>Selected Reviews:</h6></li>
+                  {% for y in t[7] %}
+                      <li class="collection-item">"{{ y }}"</li>
+                  {% endfor %}
+                {% else %}
+                  <h6>No reviews available for this museum. </h6>
+                {% endif %}
+                </ul>
                 <h6>Address: {{ t[5] }}</h6>
                 <br />
                 <img src="{{ t[6] }}" />
                 <br />
                 <span class="card-title grey-text text-darken-4 center-align"
-                  ><i class="material-icons center">close</i></span
-                >
+                  ><i class="material-icons center">close</i></span>
               </div>
             </div>
           </div>
