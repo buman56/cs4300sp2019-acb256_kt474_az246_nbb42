@@ -143,7 +143,8 @@ def get_suggestions(q):
                  link + 'museum,' + keyword[0] + ',' + keyword[-1],
                  museum_match(m_index_to_name[i]), m_index_to_address[i],
                  map_link + str(m_index_to_lat[i]) + ',' +
-                 str(m_index_to_lng[i]) + other_link + '&markers=|' + '&key=' +
+                 str(m_index_to_lng[i]) + other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
+                 str(m_index_to_lng[i]) + '&key=' +
                  api_key, reviews))
 
     if not top_5:
