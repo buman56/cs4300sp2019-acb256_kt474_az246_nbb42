@@ -28,17 +28,10 @@
     <div class="form-group col s12">
       <input id="autocomplete-input" type="text" name="search" class="autocomplete" />
 
-<<<<<<< HEAD
       <label>
-        <input type="checkbox" />
+        <input type="checkbox" name="checkbox" />
         <span>US-only</span>
       </label>
-=======
-        <label>
-          <input type="checkbox" name="checkbox" />
-          <span>US-only</span>
-        </label>
->>>>>>> 34fd0e3300d188dfab5283324b45c69e0a3c72fe
 
       <button type="submit" class="btn btn-info btn-lg blue">Search</button>
     </div>
@@ -56,7 +49,6 @@
     <h4 id="idk" class="center-align">No Results</h4>
     {% endif %}
 
-<<<<<<< HEAD
     <div class="container">
       {% for t in results %}
       <div class="row">
@@ -68,12 +60,14 @@
             </div>
             <div class="card-content">
               <!-- <p>{{ output_message.split() | length }}</p> -->
-              {% for n in output_message.split() %} {% for w in t[2].split()
-                %} {% if (n.lower() == w.lower()) or (n.lower() in w.lower())%}
+              {% set words = [] %} {% for search in output_message.split() %}
+              <div class="blank">{{ words.append(search.lower()) }}</div>
+              {% endfor %} {% for w in t[2].split()%}{% if w.lower() in words
+                %}
               <p class="inline" id="highlight">{{ w }}</p>
               {%else%}
               {{ w }}
-              {% endif %} {% endfor %} {% endfor %}
+              {% endif %} {% endfor %}
             </div>
             <div class="card-action activator center-align">
               <a class="activator" id="link">More Info</a>
@@ -94,90 +88,35 @@
                 {% endfor %}
               </ul>
               <br />
+              {% if t[7]|length > 0 %}
               <ul class="collection with-header">
-                {% if t[7]|length > 0 %}
                 <li class="collection-header">
                   <h6>Selected Reviews:</h6>
                 </li>
                 {% for y in t[7] %}
                 <li class="collection-item">"{{ y }}"</li>
-                {% endfor %} {% else %}
-                <h6>No reviews available for this museum.</h6>
-                {% endif %}
+
+                {% endfor %}
               </ul>
+              {% else %}
+
+              <br />
+              <h6>No reviews available for this museum</h6>
+              <br />
+
+              {% endif %}
+
               <h6>Address: {{ t[5] }}</h6>
               <br />
               <img src="{{ t[6] }}" />
               <br />
               <span class="card-title grey-text text-darken-4 center-align"><i
                   class="material-icons center">close</i></span>
-=======
-      <div class="container">
-        {% for t in results %}
-        <div class="row">
-          <div class="col s8 push-s2">
-            <div class="card">
-              <div class="card-image">
-                <img src="{{ t[3] }}" />
-                <span class="card-title">{{ t[0] }}</span>
-              </div>
-              <div class="card-content">
-                <!-- <p>{{ output_message.split() | length }}</p> -->
-                {% set words = [] %} {% for search in output_message.split() %}
-                <div class="blank">{{ words.append(search.lower()) }}</div>
-                {% endfor %} {% for w in t[2].split()%}{% if w.lower() in words
-                %}
-                <p class="inline" id="highlight">{{ w }}</p>
-                {%else%}
-                {{ w }}
-                {% endif %} {% endfor %}
-              </div>
-              <div class="card-action activator center-align">
-                <a class="activator" id="link">More Info</a>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4 center-align"
-                  ><h5>{{ t[0] }}</h5>
-                </span>
-                <br />
-                <ul class="collection with-header">
-                  <li class="collection-header"><h6>Similar Museums</h6></li>
-                  {% for x in t[4] %}
-                  <li class="collection-item">
-                    <a href="{{ x[1] }}">{{ x[0] }}</a>
-                  </li>
-                  {% endfor %}
-                </ul>
-                <br />
-                {% if t[7]|length > 0 %}
-                <ul class="collection with-header">
-                  <li class="collection-header"><h6>Selected Reviews:</h6></li>
-                  {% for y in t[7] %}
-                  <li class="collection-item">"{{ y }}"</li>
-
-                  {% endfor %}
-                </ul>
-                {% else %}
-
-                <br />
-                <h6>No reviews available for this museum</h6>
-                <br />
-
-                {% endif %}
-
-                <h6>Address: {{ t[5] }}</h6>
-                <br />
-                <img src="{{ t[6] }}" />
-                <br />
-                <span class="card-title grey-text text-darken-4 center-align"
-                  ><i class="material-icons center">close</i></span
-                >
-              </div>
->>>>>>> 34fd0e3300d188dfab5283324b45c69e0a3c72fe
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
     {% endfor %} {% endif %}
     </div>
