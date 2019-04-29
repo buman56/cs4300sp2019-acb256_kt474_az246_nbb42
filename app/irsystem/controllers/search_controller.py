@@ -11,6 +11,7 @@ net_id = "Kevin Tian(kt474), Alex Zhou(az246), Noah Beller(nbb42), Aaron Bu(acb2
 def search():
     query = request.args.get('search')
     version = request.args.get('version')
+    us_only = request.args.get('USonly')
     if version == "old":
         data = range(5)
         more_info = [['', ''], ['', ''], ['', '']]
@@ -26,7 +27,7 @@ def search():
         else:
             output_message = query
 
-            results = get_suggestions(query)
+            results = get_suggestions(query,us_only)
             try:
                 more_info = museum_match(results[0][0])
             except IndexError:

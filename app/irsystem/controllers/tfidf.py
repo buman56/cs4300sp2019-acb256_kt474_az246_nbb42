@@ -46,6 +46,11 @@ m_index_to_lng = {
 }
 m_name_to_index = dict((v, k) for k, v in m_index_to_name.items())
 
+m_index_to_country = {
+    index: m_name 
+    for index, m_name in enumerate(df['Country'])
+}
+
 for m in review_museum:
     ind = m_name_to_index[m]
     for review in review_js[m]:
@@ -120,32 +125,34 @@ def museum_match(q):
     return closest_projects(docs_compressed, m_name_to_index[q], 5)
 
 
-def get_suggestions(q):
+def get_suggestions(q,us_only):
     vectorizer = build_vectorizer(5000, "english")
     doc_by_vocab = vectorizer.fit_transform(desc_data)
     query = vectorizer.transform([q])
     sim = get_sim(query, 5, doc_by_vocab)[0]
     top_5_idx = np.argsort(sim)[-5:]
     top_5 = []
-
+    
     for i in reversed(top_5_idx):
-        if (sim[i] > 0 and m_index_to_description[i] != ''):
-            keyword = m_index_to_name[i].split()
-            if m_index_to_name[i] in review_museum:
-                if len(review_js[m_index_to_name[i]]) >= 3:
-                    reviews = review_js[m_index_to_name[i]][:3]
+        
+        if (sim[i] > 0 and m_index_to_description[i] != '' ):
+            if (us_only == "on" and m_index_to_country[i] == "USA" or us_only == None):
+                keyword = m_index_to_name[i].split()
+                if m_index_to_name[i] in review_museum:
+                    if len(review_js[m_index_to_name[i]]) >= 3:
+                        reviews = review_js[m_index_to_name[i]][:3]
+                    else:
+                        reviews = review_js[m_index_to_name[i]]
                 else:
-                    reviews = review_js[m_index_to_name[i]]
-            else:
-                reviews = []
-            top_5.append(
-                (m_index_to_name[i], sim[i], m_index_to_description[i],
-                 link + 'museum,' + keyword[0] + ',' + keyword[-1],
-                 museum_match(m_index_to_name[i]), m_index_to_address[i],
-                 map_link + str(m_index_to_lat[i]) + ',' +
-                 str(m_index_to_lng[i]) + other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
-                 str(m_index_to_lng[i]) + '&key=' +
-                 api_key, reviews))
+                    reviews = []
+                top_5.append(
+                    (m_index_to_name[i], sim[i], m_index_to_description[i],
+                    link + 'museum,' + keyword[0] + ',' + keyword[-1],
+                    museum_match(m_index_to_name[i]), m_index_to_address[i],
+                    map_link + str(m_index_to_lat[i]) + ',' +
+                    str(m_index_to_lng[i]) + other_link + '&markers=|' + str(m_index_to_lat[i]) + ',' +
+                    str(m_index_to_lng[i]) + '&key=' +
+                    api_key, reviews))
 
     if not top_5:
         sim_w = get_sim_words(q.partition(' ')[0])
